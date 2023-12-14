@@ -1,0 +1,90 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Add necessary meta tags, links, and scripts here -->
+	<title>GilTex</title>
+	
+	<!-- CSS libraries -->
+	<link href="~/css/footer.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="~/css/bg.css" rel="stylesheet" />
+	<!-- Include Bootstrap CSS and JS files -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="...">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
+
+	
+
+
+
+	<!-- JavaScript libraries -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></script>
+
+
+	<!-- Add any additional styles or scripts -->
+	
+
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-dark bg-dark fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Giltex MMC</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="/Home/Ui">Ana Səhifə</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Tələblər</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link " href="#">Təkliflər</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link " href="#">Sifarişlər</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link " href="/Home/TestUi">TestUi</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Hesab
+								</a>
+								<ul class="dropdown-menu dropdown-menu-dark">
+									<li><a class="dropdown-item" href="/Home/Login">Daxil ol</a></li>
+									<li><a class="dropdown-item" href="/Home/Register">Qeydiyyat</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" href="#">Something else here</a></li>
+								</ul>
+							</li>
+						</ul>
+						<form class="d-flex mt-3" role="search">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-success" type="submit">Search</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container mt-5">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+</body>
+<footer class="bg-dark text-center myfooter">
+	<p class="text-light">&copy; 2023 Giltex MMC. All rights reserved.</p>
+</footer>
+</html>

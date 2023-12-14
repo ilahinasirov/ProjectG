@@ -1,0 +1,9 @@
+﻿body {
+    margin-bottom: 60px;
+    
+    color: #edf3ff;
+    background: #c8c8c8;
+    background: url(https://hdqwalls.com/download/material-design-4k-2048x1152.jpg) fixed;
+    background-size: cover;
+    font: 600 16px/18px 'Open Sans',sans-serif;
+}

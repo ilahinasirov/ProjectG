@@ -1,0 +1,148 @@
+﻿@{
+	Layout = "_MyLayout"; // Assuming you don't want to use a layout for this specific page
+}
+
+<br />
+
+
+<div class="container bg-gray-50 bg-opacity-50">
+	<div class="row">
+		<!-- Left side -->
+		<div class="col-md-6 col-lg-3 mb-3">
+			<!-- Your content goes here -->
+			<b class="text-success">Sənəd №</b>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Sənəd nömrəsini yazın..." aria-label="Sənəd nömrəsini yazın..." aria-describedby="button-addon2">
+				<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
+			</div>
+		</div>
+
+		<div class="col-md-6 col-lg-3 mb-3">
+			<!-- Your content goes here -->
+			<b class="text-success">Tələbin Statusu</b>
+			<div class="input-group">
+				<select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+					<option selected>Seçin...</option>
+					<option value="1">Təsdiq Gözləyən</option>
+					<option value="2">Təsdiq Edilən</option>
+				</select>
+				<button class="btn btn-success" type="button" id="button-addon2">Axtar</button>
+			</div>
+		</div>
+
+		<!-- Empty right side parts -->
+		<div class="col-md-6 col-lg-3 d-none d-lg-block"></div>
+		<div class="col-md-6 col-lg-3 d-none d-lg-block"></div>
+	</div>
+</div>
+<!-- Responsive Data Table -->
+
+
+<div class="accordion" id="accordionExample">
+
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				Tələbi açanın adı və Şöbəsi
+			</button>
+		</h2>
+		<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+			<div class="accordion-body">
+				<div class="table-responsive">
+					<table class="table table-dark table-striped table-hover">
+						<thead class="table-dark">
+						<tr>
+							<th>No</th>
+							<th>Tarix</th>
+							<th>Təslimat tarixi</th>
+							<th>Sahə</th>
+							<th>Stok</th>
+							<th>Stok adı</th>
+							<th>Miqdar</th>
+							<th>Vahidi</th>
+							<th>Açıqlama</th>
+							<th>Tələbi açan</th>
+							<th>Status</th>
+							<th>Səbəb</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						<tr>
+							<td>1</td>
+							<td>Data 1</td>
+							<td>Data 2</td>
+							<td>Data 3</td>
+							<td>Data 4</td>
+							<td>Data 5</td>
+							<td>
+								Data 6
+									
+							</td>
+							<td>Data 7</td>
+							<td>
+								Data 8
+								<a class="link-primary font-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+									....
+								</a>
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="exampleModalLabel">Açıqlama</h1>
+
+											</div>
+											<div class="modal-body">
+												Data 8Data 8Data 8Data 8Data 8
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</td>
+							<td>Data 9</td>
+							<td>Data 10</td>
+							<td>
+								Data 11
+								<a class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+									...
+								</a>
+								<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="exampleModalLabel4">Səbəb</h1>
+											</div>
+											<div class="modal-body">
+												Data11 Data 11 Data 11 Data 11 Data 11
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+
+						</tr>
+
+						<!-- Add more rows as needed -->
+						</tbody>
+					</table>
+				</div>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Açıqlama əlavə edin..." aria-label="Recipient's username with two button addons">
+					<button class="btn btn-success" type="button">Təsdiq Et</button>
+					<button class="btn btn-danger" type="button">Ləğv Et</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+

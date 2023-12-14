@@ -1,0 +1,39 @@
+﻿/*body {
+    margin-bottom: 60px;*/  /*Adjust body margin to accommodate the fixed footer*/ 
+/*}
+footer {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    height: 30px;*/ /* Set the height of the footer */
+    /*position: fixed;
+    bottom: 0;
+    width: 100%;
+}*/
+
+/* Style the columns within the footer */
+/*.footer-column {
+    color: #6c757d;
+}*/
+
+
+body {
+    margin-bottom: 60px; /* Adjust body margin to accommodate the fixed footer */
+}
+
+/*footer {
+    background-color: #f8f9fa;
+    padding: 5px 0;*/ /* Adjust the padding to control the height of the footer */
+    /*height: 15px;*/ /* Set the height of the footer */
+    /*position:initial;
+    bottom: 15px;
+    top: 15px;
+    width: 100%;
+}*/
+.myfooter {
+    height: 50px !important;
+    position:fixed !important;
+
+    bottom: 0px !important;
+    padding: 5px 0 !important;
+    width: 100%;
+}

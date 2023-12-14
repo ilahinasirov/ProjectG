@@ -1,0 +1,139 @@
+﻿@{
+	Layout = "_MyLayout"; // Assuming you don't want to use a layout for this specific page
+}
+
+<br />
+
+
+
+<!-- Responsive Data Table -->
+
+<div class="container bg-gray-50 bg-opacity-50">
+	<div class="row">
+		<!-- Left side -->
+		<div class="col-md-6 col-lg-3 mb-3">
+			<!-- Your content goes here -->
+			<b class="text-success">Sənəd №</b>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Sənəd nömrəsini yazın..." aria-label="Sənəd nömrəsini yazın..." aria-describedby="button-addon2">
+				<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
+			</div>
+		</div>
+
+		<div class="col-md-6 col-lg-3 mb-3">
+			<!-- Your content goes here -->
+			<b class="text-success">Tələbin Statusu</b>
+			<div class="input-group">
+				<select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+					<option selected>Seçin...</option>
+					<option value="1">Təsdiq Gözləyən</option>
+					<option value="2">Təsdiq Edilən</option>
+				</select>
+				<button class="btn btn-success" type="button" id="button-addon2">Axtar</button>
+			</div>
+		</div>
+
+		<!-- Empty right side parts -->
+		<div class="col-md-6 col-lg-3 d-none d-lg-block"></div>
+		<div class="col-md-6 col-lg-3 d-none d-lg-block"></div>
+	</div>
+</div>
+
+
+<div class="accordion" id="accordionExample">
+
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				Tələbi açanın adı və Şöbəsi
+
+			</button>
+		</h2>
+		<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+			<div class="accordion-body">
+				<!-- My Page Content about Telebler-->
+				<div class="container bg-gray-50 bg-opacity-50">
+					<div class="row">
+						<!-- Left side -->
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Sifariş №</b> <br/>
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Tarix</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Təslimat tarixi</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Sahə</b> <br />
+							<p> Content</p>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Left side -->
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Stok</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Stok adı</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Miqdar</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Vahidi</b> <br />
+							<p> Content</p>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Left side -->
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Açıqlama</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Tələbi açan</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Status</b> <br />
+							<p> Content</p>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-3">
+							<!-- Your content goes here -->
+							<b class="text-success">Səbəb</b> <br />
+							<p> Content</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Açıqlama əlavə edin..." aria-label="Recipient's username with two button addons">
+					<button class="btn btn-success" type="button">Təsdiq Et</button>
+					<button class="btn btn-danger" type="button">İmtina Et</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+

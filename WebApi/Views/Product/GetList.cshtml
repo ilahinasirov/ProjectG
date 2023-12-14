@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Entities.Concrete.Product>
+
+<h1>GetList</h1>
+<div class="list-group">
+	<a href="#" class="list-group-item"><span class="fa fa-home"></span> Products @Model.Count</a>
+	@foreach (var product in Model)
+	{
+		<a href="#" class="list-group-item">
+			@product.ProductName
+		</a>
+	}
+</div>
