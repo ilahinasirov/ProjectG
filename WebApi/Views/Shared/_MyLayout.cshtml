@@ -11,6 +11,7 @@
 	<!-- Include Bootstrap CSS and JS files -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="...">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
+	<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 
 	
 
@@ -29,7 +30,32 @@
 	<header>
 		<nav class="navbar navbar-dark bg-dark fixed-top">
 			<div class="container-fluid">
+				
+
 				<a class="navbar-brand" href="#">Giltex MMC</a>
+				
+				<!-- Sağ köşede Daxil ol ve Qeydiyyat butonları -->
+				<div class="d-flex justify-content-end">
+					@if (ViewBag.isUserLoggedIn != null && !(bool)ViewBag.isUserLoggedIn)
+					{
+						<!-- Kullanıcı girişi yapılmışsa, logout butonu ve profil linki göster -->
+						<a class=" btn btn-outline-warning " href="/Profile"><i class="bi bi-person-fill"></i>Profil</a>
+						<a class="btn btn-warning me-2" href="/Logout">Çıxış</a>
+						
+						<a class=" btn btn-outline-light " href="/Profile"><i class="bi bi-person-fill"></i>Profile</a>
+					}
+					else
+					{
+					
+
+						<!-- Kullanıcı girişi yapılmamışsa, login ve signup butonları göster -->
+						<a class="btn btn-warning me-2" href="/Home/Login">Daxil ol</a>
+						<a class="btn btn-outline-warning" href="/Home/Register">Qeydiyyat</a>
+					}
+					
+				</div>
+
+
 				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>

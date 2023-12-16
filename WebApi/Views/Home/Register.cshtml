@@ -9,7 +9,7 @@
 	@*<div class="hr"></div>*@
 	<div class="login-wrap">
 		<div class="login-html">
-			@Html.ValidationSummary(false)
+			@Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
 			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Qeydiyyat</label>
 

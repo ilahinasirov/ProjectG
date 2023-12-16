@@ -10,7 +10,11 @@ namespace Business.Abstract
 	public interface IUserService
 	{
 		public void Register(User user);
+		void Update(User user);
 		User GetById(int userId);
 		User GetByUserName(string userName);
+		User Login(string userName, string password);
+
+		void Delete(User user);
 	}
 }
