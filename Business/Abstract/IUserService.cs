@@ -9,7 +9,7 @@ namespace Business.Abstract
 {
 	public interface IUserService
 	{
-		public void Register(User user);
+		public void Register(User user, string hashedPassword);
 		void Update(User user);
 		User GetById(int userId);
 		User GetByUserName(string userName);

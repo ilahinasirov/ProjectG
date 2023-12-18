@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 using Business.Abstract;
+using Core.Entities;
 using Entities.Concrete;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -61,10 +63,12 @@ namespace WebApi.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				User user = new User();
+				
+				string hashedPassword = PasswordHelper.HashPassword(model.Password);
 
 				// Giriş işlemi
-				user = _userService.Login(model.UserName, model.Password);
+				User user = _userService.Login(model.UserName, hashedPassword);
+
 
 				if (user != null)
 				{
@@ -140,7 +144,7 @@ namespace WebApi.Controllers
 
 			if (ModelState.IsValid)
 			{
-				User user = null;
+				
 				try
 				{
 
@@ -151,9 +155,9 @@ namespace WebApi.Controllers
 						UserName = model.UserName,
 						Email = model.Email,
 						UserDepartments = model.SelectedRole,
-						Password = model.Password
+						
 
-					});
+					}, PasswordHelper.HashPassword(model.Password));
 					if (_userService == null)
 					{
 						return View(model);
@@ -164,7 +168,7 @@ namespace WebApi.Controllers
 				catch (Exception e)
 				{
 					ModelState.AddModelError(String.Empty, e.Message);
-					throw;
+					return View(model);
 				}
 
 			}
@@ -174,7 +178,7 @@ namespace WebApi.Controllers
 
 
 		}
-
+		
 
 		public IActionResult RegisterOk()
 		{
