@@ -1,15 +1,18 @@
-﻿using Buisness.Abstract;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using Business.Abstract;
 using Core.Entities;
+using Core.Entities.Concrete;
+using Core.Utilities.Security.Jwt;
 using Entities.Concrete;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Identity.Json;
 using WebApi.Models;
+using JsonConvert = Newtonsoft.Json.JsonConvert;
 
 
 namespace WebApi.Controllers
@@ -39,6 +42,11 @@ namespace WebApi.Controllers
 
 		public IActionResult Ui()
 		{
+			string cookieData = Request.Cookies["AccessToken"];
+			if (!string.IsNullOrEmpty(cookieData))
+			{
+				AccessToken loggedInUser = JsonConvert.DeserializeObject<AccessToken>(cookieData);
+			}
 			return View();
 		}
 		public IActionResult TestUi()
@@ -70,7 +78,7 @@ namespace WebApi.Controllers
 				User user = _userService.Login(model.UserName, hashedPassword);
 
 
-				if (user != null)
+				if (user != null )
 				{
 
 					var session = _httpContextAccessor.HttpContext?.Session;
@@ -153,10 +161,7 @@ namespace WebApi.Controllers
 						Name = model.Name,
 						SurName = model.SurName,
 						UserName = model.UserName,
-						Email = model.Email,
-						UserDepartments = model.SelectedRole,
-						
-
+						Email = model.Email
 					}, PasswordHelper.HashPassword(model.Password));
 					if (_userService == null)
 					{
@@ -241,10 +246,10 @@ namespace WebApi.Controllers
 					userToUpdate.PhoneNumber = model.PhoneNumber;
 
 					// Şifre dəyişmək istəyi varsa
-					if (!string.IsNullOrEmpty(model.Password))
-					{
-						userToUpdate.Password = model.Password;
-					}
+					//if (!string.IsNullOrEmpty(model.Password))
+					//{
+					//	userToUpdate.Password = model.Password;
+					//}
 
 					// Kullanıcıyı güncelle
 					_userService.Update(userToUpdate);

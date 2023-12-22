@@ -1,4 +1,5 @@
 C:\Users\Nasirov\ProjectG\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.deps.json
+C:\Users\Nasirov\ProjectG\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.runtimeconfig.json
 C:\Users\Nasirov\ProjectG\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.dll
 C:\Users\Nasirov\ProjectG\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.pdb
 C:\Users\Nasirov\ProjectG\DataAccessLayer\bin\Debug\net7.0\Core.dll
@@ -14,6 +15,5 @@ C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.cspro
 C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.dll
 C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\refint\DataAccessLayer.dll
 C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.pdb
-C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\ref\DataAccessLayer.dll
-C:\Users\Nasirov\ProjectG\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.runtimeconfig.json
 C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.genruntimeconfig.cache
+C:\Users\Nasirov\ProjectG\DataAccessLayer\obj\Debug\net7.0\ref\DataAccessLayer.dll

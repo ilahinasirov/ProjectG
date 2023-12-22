@@ -1,0 +1,82 @@
+﻿@using Entities.Dtos
+@model UserForRegisterDto
+@{
+	Layout = "_MyLayout"; // Assuming you don't want to use a layout for this specific page
+}
+<link href="~/css/login.css" rel="stylesheet" />
+@using (Html.BeginForm())
+{
+	@*<div class="hr"></div>*@
+	<div class="login-wrap">
+		<div class="login-html">
+			@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Qeydiyyat</label>
+
+			@*For Forget password and reset*@
+			<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">@*Şifrəni Sıfırla*@</label>
+			<div class="login-form">
+				<div class="sign-in-htm">
+					<div class="group">
+
+						<label for="user" class="label">Ad</label>
+						@Html.TextBoxFor(model => model.Name, new { @class = " input", @type = "text" })
+
+					</div>
+					<div class="group">
+
+						<label for="user" class="label">Soyad</label>
+						@Html.TextBoxFor(model => model.SurName, new { @class = " input", @type = "text" })
+
+					</div>
+					<div class="group">
+
+						<label for="user" class="label">İstifadəçi Adı</label>
+						@Html.TextBoxFor(model => model.UserName, new { @class = " input", @type = "text" })
+
+					</div>
+					<div class="group">
+
+						<label for="user" class="label">E-Poçt</label>
+						@Html.TextBoxFor(model => model.Email, new { @class = " input", @type = "email" })
+
+					</div>
+
+
+
+					@*<div class="group">
+						<label for="user" class="label">Departament</label>
+						<div class="select-container">
+							@Html.DropDownListFor(model => model.SelectedRole, new SelectList(Model.AvailableRoles), new { @class = "form-control input  selectlist" })
+						</div>
+					</div>*@
+					<div class="group">
+						<label for="pass" class="label">Şifrə</label>
+						@Html.TextBoxFor(model => model.Password, new { @class = " input", @type = "password" })
+						@*<input id="pass" type="password" class="input" data-type="password">*@
+					</div>
+					<div class="group">
+						<label for="pass" class="label">Təkrar Şifrə</label>
+						@Html.TextBoxFor(model => model.RePassword, new { @class = " input", @type = "password" })
+						@*<input id="pass" type="password" class="input" data-type="password">*@
+					</div>
+					<div class="group">
+						<button class="button btn" type="submit">Qeyd Ol</button>
+						@*<input type="submit" class="button" value="Daxil Ol" >*@
+					</div>
+					<div class="hr"></div>
+				</div>
+				@*<div class="for-pwd-htm">
+			<div class="group">
+			<label for="user" class="label">Username or Email</label>
+			<input id="user" type="text" class="input">
+			</div>
+			<div class="group">
+			<input type="submit" class="button" value="Reset Password">
+			</div>
+			<div class="hr"></div>
+			</div>*@
+			</div>
+		</div>
+	</div>
+}

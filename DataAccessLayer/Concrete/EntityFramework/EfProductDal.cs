@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.DataAccess.EntityframeWork;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework.Contexts;
+﻿using Core.DataAccess.EntityframeWork;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace DataAccessLayer.Concrete.EntityFramework
 {
-	public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
+	public class EfProductDal : EfEntityRepositoryBase<Product, ProjectGContext>, IProductDal
 	{
+		public EfProductDal(ProjectGContext context) : base(context)
+		{
+		}
 	}
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities;
+using Core.Entities.Concrete;
 using DataAccessLayer.Abstract;
 using Entities.Concrete;
 using Entities.ViewModels;
@@ -29,13 +30,31 @@ namespace Business.Concrete
 		}
 
 
+		public List<OperationClaim> GetClaims(User user)
+		{
+			return _userDal.GetClaims(user);
+		}
 
+		public User GetByMail(string mail)
+		{
+			return _userDal.Get(u=>u.Email==mail);
+		}
+
+		public User GetByUsername(string userName)
+		{
+			return _userDal.Get(u => u.UserName == userName);
+
+		}
+
+		public void Add(User user)
+		{
+			_userDal.Add(user);
+		}
 
 		public void Register(User user,string hashedPassword)
 		{
 
 
-			// Kullanıcı adı ve e-posta adresi daha önce kullanılmış mı kontrolü
 			var existingUser = _userDal.Get(u => u.UserName == user.UserName || u.Email == user.Email);
 			if (existingUser != null)
 			{
@@ -47,7 +66,7 @@ namespace Business.Concrete
 
 			}
 			//hashla
-			user.Password = hashedPassword;
+			//user.Password = hashedPassword;
 
 
 			_userDal.Add(user);
@@ -56,12 +75,13 @@ namespace Business.Concrete
 		public User Login(string userName, string password)
 		{
 
-			var user = _userDal.Get(u => u.UserName == userName);
-			if (user != null && PasswordHelper.VerifyPassword(password, user.Password))
-			{
-				return user;
-			}
-			
+
+		   var user = _userDal.Get(u => u.UserName == userName);
+		   //if (user != null && PasswordHelper.VerifyPassword(password, user.Password))
+		   //{
+			  // return user;
+		   //}
+
 
 			return null;
 

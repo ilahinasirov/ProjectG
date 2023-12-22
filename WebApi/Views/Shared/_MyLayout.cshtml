@@ -34,11 +34,11 @@
 
 				<a class="navbar-brand" href="#">Giltex MMC</a>
 				
-				<!-- Sağ köşede Daxil ol ve Qeydiyyat butonları -->
+				<!-- Sağ küncde Daxil ol ve Qeydiyyat butonları -->
 				<div class="d-flex justify-content-end">
 					@if (ViewBag.isUserLoggedIn != null && !(bool)ViewBag.isUserLoggedIn)
 					{
-						<!-- Kullanıcı girişi yapılmışsa, logout butonu ve profil linki göster -->
+						<
 						<a class=" btn btn-outline-warning " href="/Profile"><i class="bi bi-person-fill"></i>Profil</a>
 						<a class="btn btn-warning me-2" href="/Logout">Çıxış</a>
 						
@@ -48,9 +48,9 @@
 					{
 					
 
-						<!-- Kullanıcı girişi yapılmamışsa, login ve signup butonları göster -->
-						<a class="btn btn-warning me-2" href="/Home/Login">Daxil ol</a>
-						<a class="btn btn-outline-warning" href="/Home/Register">Qeydiyyat</a>
+						
+						<a class="btn btn-warning me-2" href="/Auth/Login">Daxil ol</a>
+						<a class="btn btn-outline-warning" href="/Auth/Register">Qeydiyyat</a>
 					}
 					
 				</div>
