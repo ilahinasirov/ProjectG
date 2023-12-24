@@ -36,22 +36,19 @@
 				
 				<!-- Sağ küncde Daxil ol ve Qeydiyyat butonları -->
 				<div class="d-flex justify-content-end">
-					@if (ViewBag.isUserLoggedIn != null && !(bool)ViewBag.isUserLoggedIn)
-					{
-						<
+					
 						<a class=" btn btn-outline-warning " href="/Profile"><i class="bi bi-person-fill"></i>Profil</a>
 						<a class="btn btn-warning me-2" href="/Logout">Çıxış</a>
 						
-						<a class=" btn btn-outline-light " href="/Profile"><i class="bi bi-person-fill"></i>Profile</a>
-					}
-					else
-					{
+						
+					
+					
 					
 
 						
 						<a class="btn btn-warning me-2" href="/Auth/Login">Daxil ol</a>
 						<a class="btn btn-outline-warning" href="/Auth/Register">Qeydiyyat</a>
-					}
+					
 					
 				</div>
 

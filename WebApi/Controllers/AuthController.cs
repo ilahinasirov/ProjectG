@@ -1,9 +1,12 @@
 ﻿using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Core.Extensions;
+using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Identity.Json;
 using WebApi.Models;
@@ -62,6 +65,10 @@ namespace WebApi.Controllers
 
 		public IActionResult Register()
 		{
+			var staticDepartmens = new StaticDepartmens();
+			var departments = staticDepartmens.GetDepartments();
+
+			ViewBag.Departments = new SelectList(departments, "Id", "Name");
 			return View();
 		}
 

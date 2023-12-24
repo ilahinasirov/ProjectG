@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,7 @@ builder.Services.AddScoped<IProductDal, EfProductDal>();
 builder.Services.AddScoped<IUserService, UserManager>();
 builder.Services.AddScoped<IUserDal, EfUserDal>();
 builder.Services.AddScoped<IAuthService, AuthManager>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserManager>();
 builder.Services.AddScoped<ITokenHelper,JwtHelper >();
 
 var connStr = builder.Configuration.GetConnectionString("MyConnectionString");
@@ -94,5 +96,7 @@ app.MapControllerRoute(
 	pattern: "{controller=Home}/{action=Ui}/{id?}");
 
 app.UseMiddleware<ValidateTokenMiddleware>();
+app.UseMiddleware<JwtCurrentUserMiddleware>();
+
 
 app.Run();

@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities;
+using Core.Entities.Dtos.Abstract;
 using Entities.Concrete;
 
 namespace Entities.Dtos
 {
-	public class UserForRegisterDto:IDto
+    public class UserForRegisterDto:IDto
 	{
 		[DisplayName("Ad"), Required(ErrorMessage = "{0} sahəsi boş keçilməz!")]
 		public string Name { get; set; }
@@ -27,10 +27,10 @@ namespace Entities.Dtos
 		public string Email { get; set; }
 
 
-		//public List<UserDepartment> SelectedRole { get; set; }
+		
 
-		//[DisplayName("Departament"), Required(ErrorMessage = "{0} sahəsi boş keçilməz!")]
-		//public List<string> AvailableRoles { get; set; } = new List<string>();
+		[DisplayName("Seçilmiş Departament"), Required(ErrorMessage = "{0} sahəsi boş keçilməz!")]
+		public int SelectedDepartment { get; set; }
 
 
 		[DisplayName("Şifrə"), Required(ErrorMessage = "{0} sahəsi boş keçilməz!"), DataType(DataType.Password)]

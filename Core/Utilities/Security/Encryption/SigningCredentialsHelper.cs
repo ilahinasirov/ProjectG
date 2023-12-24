@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Core.Utilities.Security.Encryption
 {
-	// Security key ve alqoritmani teyin edeceyik 
+	// Security key ve alqoritmani teyin edecem,, etibarnamələrinimzalanması
 	public class SigningCredentialsHelper
 	{
 		public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)

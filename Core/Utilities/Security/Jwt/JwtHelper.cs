@@ -75,5 +75,21 @@ namespace Core.Utilities.Security.Jwt
 
 
 		}
+		public static IEnumerable<Claim> GetClaims(string token)
+		{
+			var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+
+			if (jwtSecurityTokenHandler.CanReadToken(token))
+			{
+				var jwtSecurityToken = jwtSecurityTokenHandler.ReadToken(token) as JwtSecurityToken;
+
+				if (jwtSecurityToken != null)
+				{
+					return jwtSecurityToken.Claims;
+				}
+			}
+
+			return null;
+		}
 	}
 }

@@ -18,7 +18,7 @@ namespace Entities.Concrete
 
 		// Navigation properties
 		public User User { get; set; }
-		public Department Department { get; set; }
+		public Department? Department { get; set; }
 
 
 	}
