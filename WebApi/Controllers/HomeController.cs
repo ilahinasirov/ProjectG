@@ -6,6 +6,7 @@ using System.Text;
 using Business.Abstract;
 using Core.Entities;
 using Core.Entities.Concrete;
+using Core.Services;
 using Core.Utilities.Security.Jwt;
 using Entities.Concrete;
 using Entities.ViewModels;
@@ -50,8 +51,26 @@ namespace WebApi.Controllers
 			if (!string.IsNullOrEmpty(cookieData))
 			{
 				AccessToken loggedInUser = JsonConvert.DeserializeObject<AccessToken>(cookieData);
+				Console.WriteLine(loggedInUser.Token.Length);
+				
 			}
-			
+
+			//var context = this.HttpContext;
+
+			//string cookieData = context.Request.Cookies["AccessToken"];
+
+			//if (!string.IsNullOrEmpty(cookieData))
+			//{
+				
+			//	var userId = JwtHelper.GetClaims(cookieData);
+
+			//	if (!string.IsNullOrEmpty(userId))
+			//	{
+			//		Console.WriteLine(userId);
+			//	}
+			//}
+
+
 			return View();
 		}
 		public IActionResult TestUi()
