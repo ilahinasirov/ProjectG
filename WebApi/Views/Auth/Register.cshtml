@@ -23,6 +23,7 @@
 						@Html.TextBoxFor(model => model.Name, new { @class = " input", @type = "text" })
 
 					</div>
+
 					<div class="group">
 
 						<label for="user" class="label">Soyad</label>
@@ -53,7 +54,7 @@
 					<div class="group">
 						<label for="user" class="label">Departament</label>
 						<div class="select-container">
-							@Html.DropDownListFor(model => model.SelectedDepartment, ViewBag.Departments as SelectList, new { @class = "form-control input selectlist" })
+							@Html.DropDownListFor(model => model.SelectedDepartment, Model.Departments, "Departament seçin", new { @class = "form-control input selectlist" })
 						</div>
 					</div>
 					<div class="group">

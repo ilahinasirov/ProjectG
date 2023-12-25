@@ -1,8 +1,6 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
-using Business.DependencyResolvers.Autofac;
+using Core.Services;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
 using DataAccessLayer.Abstract;
@@ -10,10 +8,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using DataAccessLayer.Concrete.EntityFramework.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using Core.Services;
 using WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("AllowOrigin",
@@ -48,6 +44,7 @@ builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<IProductDal, EfProductDal>();
 builder.Services.AddScoped<IUserService, UserManager>();
 builder.Services.AddScoped<IUserDal, EfUserDal>();
+builder.Services.AddScoped<IRequestDal, EfRequestDal>();
 builder.Services.AddScoped<IAuthService, AuthManager>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<ITokenHelper,JwtHelper >();

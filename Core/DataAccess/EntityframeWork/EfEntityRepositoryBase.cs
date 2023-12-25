@@ -49,6 +49,25 @@ namespace Core.DataAccess.EntityframeWork
 		{
 			var addedEntity = Context.Entry(entity);
 			addedEntity.State = EntityState.Added;
+			foreach (var navigation in addedEntity.Navigations)
+			{
+				if (navigation.Metadata.IsCollection)
+				{
+					var relatedEntities = (IEnumerable<object>)navigation.CurrentValue;
+					foreach (var relatedEntity in relatedEntities)
+					{
+						Context.Entry(relatedEntity).State = EntityState.Added;
+					}
+				}
+				else
+				{
+					var relatedEntity = navigation.CurrentValue;
+					if (relatedEntity != null)
+					{
+						Context.Entry(relatedEntity).State = EntityState.Added;
+					}
+				}
+			}
 			Context.SaveChanges();
 		}
 
@@ -63,6 +82,34 @@ namespace Core.DataAccess.EntityframeWork
 		{
 			var updatedEntity = Context.Entry(entity);
 			updatedEntity.State = EntityState.Modified;
+			foreach (var navigation in Context.Entry(entity).Navigations)
+			{
+				if (navigation.Metadata.IsCollection)
+				{
+					var relatedEntities = (IEnumerable<object>)navigation.CurrentValue;
+					foreach (var relatedEntity in relatedEntities)
+					{
+						var primaryKey = Context.Entry(relatedEntity).Metadata.FindPrimaryKey();
+						var keyValues = primaryKey.Properties.Select(p => Context.Entry(relatedEntity).Property(p.Name).CurrentValue).ToArray();
+						var isExistingEntity = keyValues.All(k => k != null && (int)k > 0);
+
+						Context.Entry(relatedEntity).State = isExistingEntity ? EntityState.Modified : EntityState.Added;
+					}
+				}
+				else
+				{
+					var relatedEntity = navigation.CurrentValue;
+					if (relatedEntity != null)
+					{
+						var primaryKey = Context.Entry(relatedEntity).Metadata.FindPrimaryKey();
+						var keyValues = primaryKey.Properties.Select(p => Context.Entry(relatedEntity).Property(p.Name).CurrentValue).ToArray();
+						var isExistingEntity = keyValues.All(k => k != null && (int)k > 0);
+
+						Context.Entry(relatedEntity).State = isExistingEntity ? EntityState.Modified : EntityState.Added;
+					}
+				}
+			}
+
 			Context.SaveChanges();
 		}
 	}

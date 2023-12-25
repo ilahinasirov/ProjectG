@@ -31,8 +31,6 @@ body {
 }*/
 .myfooter {
     height: 50px !important;
-    position:fixed !important;
-
     bottom: 0px !important;
     padding: 5px 0 !important;
     width: 100%;

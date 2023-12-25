@@ -2,6 +2,12 @@ html {
   font-size: 14px;
 }
 
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -18,4 +24,55 @@ html {
 }
 
 
+.notification-container {
+    z-index: 1000;
+    width: 20%;
+    height: 60px;
+    position: fixed;
+    right: -500px;
+    bottom: 30px;
+    border-radius: 7px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.alert-success {
+    background-color: rgb(40, 210, 40);
+}
+
+.alert-fail {
+    background-color: rgb(241, 59, 59);
+}
+
+.alert-warning {
+    background-color: rgb(248, 160, 18);
+}
+
+.notification-content {
+    text-align: center;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+
+@keyframes slideIn {
+    0% {
+        right: -500px;
+    }
+
+    100% {
+        right: 15px;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        right: 15px;
+    }
+
+    100% {
+        right: -500px;
+    }
+}

@@ -1,24 +1,19 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
-using Business.Abstract;
-using Core.Entities;
+﻿using Business.Abstract;
 using Core.Entities.Concrete;
 using Core.Services;
+using Core.Utilities.Resources.Enum;
 using Core.Utilities.Security.Jwt;
 using Entities.Concrete;
-using Entities.ViewModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Identity.Json;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using WebApi.Models;
+using WebApi.Models.ViewModels;
 using JsonConvert = Newtonsoft.Json.JsonConvert;
 
 
 namespace WebApi.Controllers
 {
-	public class HomeController : Controller
+    public class HomeController : BaseController
 	{
 		private ILogger<HomeController> _logger;
 		private IUserService _userService;
@@ -28,9 +23,9 @@ namespace WebApi.Controllers
 		public HomeController(ILogger<HomeController> logger, IUserService userService, IHttpContextAccessor httpContextAccessor, ICurrentUserService currentUserService)
 		{
 			_logger = logger;
-			_userService = userService;
 			_httpContextAccessor = httpContextAccessor;
 			_currentUserService = currentUserService;
+			_userService = userService;
 		}
 
 
@@ -47,32 +42,47 @@ namespace WebApi.Controllers
 
 		public IActionResult Ui()
 		{
-			string cookieData = Request.Cookies["AccessToken"];
-			if (!string.IsNullOrEmpty(cookieData))
+			AccessToken cookieData = JsonConvert.DeserializeObject<AccessToken>(Request.Cookies["AccessToken"]);
+
+			var notificationModel = GetNotification();
+
+            var userId = GetUserId();
+
+			var userRequests = _userService.GetUserRequests(userId);
+
+			var result = new HomeUiViewModel
 			{
-				AccessToken loggedInUser = JsonConvert.DeserializeObject<AccessToken>(cookieData);
-				Console.WriteLine(loggedInUser.Token.Length);
-				
-			}
+                Requests = userRequests,
+				Notification = notificationModel
+            };
 
-			//var context = this.HttpContext;
-
-			//string cookieData = context.Request.Cookies["AccessToken"];
-
-			//if (!string.IsNullOrEmpty(cookieData))
-			//{
-				
-			//	var userId = JwtHelper.GetClaims(cookieData);
-
-			//	if (!string.IsNullOrEmpty(userId))
-			//	{
-			//		Console.WriteLine(userId);
-			//	}
-			//}
-
-
-			return View();
+			return View(result);
 		}
+
+		[HttpPost]
+		public IActionResult UpdateRequest(string actionName, string comment, int requestId)
+		{
+			var loggedInUser = _userService.GetById(GetUserId());
+			var actionType = (ActionType)Enum.Parse(typeof(ActionType), actionName);
+
+            var userRequest = new UserRequest(loggedInUser.Id, requestId, comment, loggedInUser.UserName, actionType == ActionType.ConfirmRequest);
+
+            var updateResult = _userService.UpdateUserRequests(userRequest, actionType);
+
+			var user = _userService.GetById(GetUserId());
+
+			if (updateResult > 0)
+			{
+				SetNotification($"{requestId} nömrəli Tələb {user.UserName} tərəfindən redaktə olundu.", NotificationType.Success);
+			}
+			else
+			{
+                SetNotification("Xəta baş verdi. Məlumat redaktə olunmadı.", NotificationType.Fail);
+            }
+
+            return RedirectToAction("Ui", "Home");
+        }
+
 		public IActionResult TestUi()
 
 		{

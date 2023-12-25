@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ProjectGContext))]
-    partial class ProjectGContextModelSnapshot : ModelSnapshot
+    [Migration("20231225034234_recordDateForComment")]
+    partial class recordDateForComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,20 +207,13 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("RecordDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 25, 4, 30, 20, 645, DateTimeKind.Utc).AddTicks(2739));
+                        .HasDefaultValue(new DateTime(2023, 12, 25, 3, 42, 34, 65, DateTimeKind.Utc).AddTicks(9596));
 
                     b.Property<int>("RequestId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("UpdateType")
-                        .HasColumnType("bit");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

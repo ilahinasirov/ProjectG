@@ -1,25 +1,22 @@
-﻿using System.Text;
-using Business.Abstract;
-using Business.Constants;
+﻿using Business.Abstract;
 using Core.Extensions;
-using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Identity.Json;
-using WebApi.Models;
+using WebApi.PresentationValidator.FluentValidation;
 
 namespace WebApi.Controllers
 {
-	public class AuthController : Controller
+	public class AuthController : BaseController
 	{
 		private IAuthService _authService;
+		private IUserService _userService;
 
-		public AuthController(IAuthService authService)
+
+		public AuthController(IAuthService authService, IUserService userService)
 		{
 			_authService = authService;
+			_userService = userService;
 		}
 
 		public IActionResult Login()
@@ -56,7 +53,7 @@ namespace WebApi.Controllers
 					return View(model);
 				}
 
-			
+
 			}
 
 			return View(model);
@@ -66,44 +63,50 @@ namespace WebApi.Controllers
 		public IActionResult Register()
 		{
 			var staticDepartmens = new StaticDepartmens();
-			var departments = staticDepartmens.GetDepartments();
+			var departments = _userService.GetAllDepartments();
 
-			ViewBag.Departments = new SelectList(departments, "Id", "Name");
-			return View();
+			var model = new UserForRegisterDto
+			{
+				Departments = departments.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() }).ToList()
+			};
+			return View(model);
 		}
 
 		[HttpPost]
 		public IActionResult Register(UserForRegisterDto model)
 		{
-			if (ModelState.IsValid)
+			var validator = new RegisterValidatior();
+			var validationResult = validator.Validate(model);
+			model.Departments = model.Departments ?? _userService.GetAllDepartments().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() }).ToList();
+
+			if (!validationResult.IsValid)
 			{
-				try
-				{
-					var userAlreadyExists = _authService.UserAlreadyExists(model.UserName);
-					if (!userAlreadyExists.Success)
-					{
-						return BadRequest(userAlreadyExists.Message);
-					}
-
-					var registerResult = _authService.Register(model, model.Password);
-
-					var result = _authService.CreateAccessToken(registerResult.Data);
-					if (result.Success)
-					{
-						return RedirectToAction("RegisterOk", "Home");
-					}
-					return View("Error");
-				}
-				catch (Exception e)
-				{
-					ModelState.AddModelError(String.Empty, e.Message);
-					return View(model);
-				}
-
-
+				validationResult.Errors.ForEach(x => ModelState.AddModelError(x.PropertyName, x.ErrorMessage));
+				return View(model);
 			}
 
-			return View(model);
+			try
+			{
+				var userAlreadyExists = _authService.UserAlreadyExists(model.UserName);
+				if (!userAlreadyExists.Success)
+				{
+					return BadRequest(userAlreadyExists.Message);
+				}
+
+				var registerResult = _authService.Register(model, model.Password);
+
+				var result = _authService.CreateAccessToken(registerResult.Data);
+				if (result.Success)
+				{
+					return RedirectToAction("RegisterOk", "Home");
+				}
+				return View("Error");
+			}
+			catch (Exception e)
+			{
+				ModelState.AddModelError(String.Empty, e.Message);
+				return View(model);
+			}
 		}
 	}
 }

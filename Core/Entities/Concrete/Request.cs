@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-	public class Request
+	public class Request : IEntity
 	{
-		[Key]
 		public int Id { get; set; }
 		public int BaseId { get; set; }
 		public int DepartmentId { get; set; }

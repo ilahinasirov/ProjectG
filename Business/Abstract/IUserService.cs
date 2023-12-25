@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities.Concrete;
+using Core.Utilities.Resources.Enum;
 
 namespace Business.Abstract
 {
-	public interface IUserService
+    public interface IUserService
 	{
 		List<OperationClaim> GetClaims(User user);
 
@@ -26,5 +27,12 @@ namespace Business.Abstract
 		User Login(string userName, string password);
 
 		void Delete(User user);
-	}
+
+		List<Department> GetUsersDepartments(int userId);
+		List<Department> GetAllDepartments();
+
+		List<Request> GetUserRequests(int userId);
+
+		int UpdateUserRequests(UserRequest userRequest, ActionType actionType);
+    }
 }

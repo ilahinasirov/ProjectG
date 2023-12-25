@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities;
 using Core.Entities.Concrete;
+using Core.Utilities.Resources.Enum;
 using DataAccessLayer.Abstract;
 using Entities.Concrete;
 using Entities.ViewModels;
@@ -17,16 +18,16 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Business.Concrete
 {
-	public class UserManager : IUserService
+    public class UserManager : IUserService
 	{
 		private IUserDal _userDal;
+		private IRequestDal _requestDal;
 
 
-
-		public UserManager(IUserDal userDal)
+		public UserManager(IUserDal userDal, IRequestDal requestDal)
 		{
 			_userDal = userDal;
-
+			_requestDal = requestDal;
 		}
 
 
@@ -112,6 +113,26 @@ namespace Business.Concrete
 		{
 			return _userDal.Get(u => u.UserName == userName);
 		}
-	}
+
+        public List<Department> GetUsersDepartments(int userId)
+        {
+            return _userDal.GetUserDepartmentIds(userId);
+        }
+
+        public List<Department> GetAllDepartments()
+        {
+            return _userDal.GetAllDepartments();
+        }
+
+		public List<Request> GetUserRequests(int userId)
+		{
+			return _userDal.GetUserRequests(userId);
+		}
+
+        public int UpdateUserRequests(UserRequest userRequest, ActionType actionType)
+        {
+            return _userDal.UpdateUserRequest(userRequest, actionType);
+        }
+    }
 }
 

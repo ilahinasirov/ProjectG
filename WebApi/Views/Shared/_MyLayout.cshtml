@@ -18,12 +18,10 @@
 
 
 	<!-- JavaScript libraries -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></script>
-
-
+    <script src="~/lib/jquery/jquery.min.js"></script>
 	<!-- Add any additional styles or scripts -->
-	
-
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
 
 </head>
 <body>
@@ -39,12 +37,6 @@
 					
 						<a class=" btn btn-outline-warning " href="/Profile"><i class="bi bi-person-fill"></i>Profil</a>
 						<a class="btn btn-warning me-2" href="/Logout">Çıxış</a>
-						
-						
-					
-					
-					
-
 						
 						<a class="btn btn-warning me-2" href="/Auth/Login">Daxil ol</a>
 						<a class="btn btn-outline-warning" href="/Auth/Register">Qeydiyyat</a>
@@ -106,6 +98,8 @@
 			@RenderBody()
 		</main>
 	</div>
+
+	@RenderSection("scripts", false)
 </body>
 <footer class="bg-dark text-center myfooter">
 	<p class="text-light">&copy; 2023 Giltex MMC. All rights reserved.</p>

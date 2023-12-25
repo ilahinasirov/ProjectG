@@ -19,6 +19,8 @@ namespace DataAccessLayer.Concrete.EntityFramework.Configurations
 
 			builder.Property(x => x.Id).UseIdentityColumn();
 
+			builder.Property(x => x.RecordDate).HasDefaultValue(DateTime.UtcNow);
+
 
 			builder.HasOne(p => p.Request).WithMany(x => x.UserRequests).OnDelete(DeleteBehavior.Cascade).IsRequired(false);
 			builder.HasOne(p => p.User).WithMany(x => x.UserRequests).OnDelete(DeleteBehavior.Cascade).IsRequired(false);

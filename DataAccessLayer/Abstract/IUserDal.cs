@@ -1,17 +1,20 @@
 ﻿using Core.DataAccess;
-using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Entities.Concrete;
+using Core.Utilities.Resources.Enum;
+using Entities.Concrete;
 
 namespace DataAccessLayer.Abstract
 {
-	public interface IUserDal: IEntityRepository<User>
+    public interface IUserDal: IEntityRepository<User>
 	{
 		List<OperationClaim> GetClaims(User user);
 		User GetUserWithRelations(int id);
+
+		List<Department> GetUserDepartmentIds(int userId);
+		List<Department> GetAllDepartments();
+
+		List<Request> GetUserRequests(int userId);
+
+		int UpdateUserRequest(UserRequest userRequest, ActionType actionType);
 	}
 }

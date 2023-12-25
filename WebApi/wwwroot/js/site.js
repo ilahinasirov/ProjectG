@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function (e) {
+    let notification = $(".notification-container");
 
-// Write your JavaScript code.
+    if (notification !== null && notification !== undefined) {
+        notification.animate({ right: "15px" }, 500, function () {
+            setTimeout(function () {
+                notification.animate({ right: "-500px" }, 500);
+            }, 2000);
+        });
+    }
+});
